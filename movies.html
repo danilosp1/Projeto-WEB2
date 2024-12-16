@@ -310,6 +310,15 @@
         });
       }
 
+      function scrollCarousel(containerId, direction) {
+        const container = document.getElementById(containerId);
+        const scrollAmount = container.querySelector(".w-60").offsetWidth + 16;
+        container.scrollBy({
+          left: scrollAmount * direction,
+          behavior: "smooth",
+        });
+      }
+
       fetchMoviesByGenre(28, "action-movies");
       fetchMoviesByGenre(35, "comedy-movies");
       fetchMoviesByGenre(18, "drama-movies");

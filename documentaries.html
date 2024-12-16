@@ -237,6 +237,15 @@
         });
       }
 
+      function scrollCarousel(containerId, direction) {
+        const container = document.getElementById(containerId);
+        const scrollAmount = container.querySelector(".w-60").offsetWidth + 16;
+        container.scrollBy({
+          left: scrollAmount * direction,
+          behavior: "smooth",
+        });
+      }
+
       fetchDocumentaries();
     </script>
   </body>

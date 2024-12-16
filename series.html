@@ -49,7 +49,8 @@
       #comedy-series,
       #horror-series,
       #drama-series,
-      #action-series {
+      #action-series,
+      #mystery-series {
         display: flex;
         gap: 1rem;
         overflow-x: auto;
@@ -65,7 +66,8 @@
       #comedy-series::-webkit-scrollbar,
       #horror-series::-webkit-scrollbar,
       #drama-series::-webkit-scrollbar,
-      #action-series::-webkit-scrollbar {
+      #action-series::-webkit-scrollbar,
+      #mystery-series::-webkit-scrollbar {
         display: none;
       }
 
@@ -307,6 +309,15 @@
         </div>
       </div>`;
           container.innerHTML += serieCard;
+        });
+      }
+
+      function scrollCarousel(containerId, direction) {
+        const container = document.getElementById(containerId);
+        const scrollAmount = container.querySelector(".w-60").offsetWidth + 16;
+        container.scrollBy({
+          left: scrollAmount * direction,
+          behavior: "smooth",
         });
       }
 
