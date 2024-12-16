@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <style>
+      body {
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+      #blur-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-[#141414] text-white overflow-x-hidden overflow-y-auto relative"
+  >
+    <div id="blur-overlay"></div>
+    <header
+      class="w-full flex flex-col md:flex-row items-center justify-between px-10 py-12 gap-4 text-white"
+    >
+      <!-- Navegação principal -->
+      <nav
+        class="flex flex-col md:flex-row items-center justify-between w-full"
+      >
+        <div
+          class="flex flex-col md:flex-row items-center gap-6 md:justify-between w-full"
+        >
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <a href="index.html">
+              <img
+                src="./assets/images/logo.png"
+                class="w-28 md:w-32"
+                alt="Logo"
+              />
+            </a>
+
+            <!-- Links de navegação -->
+            <ul class="flex flex-row items-center gap-6">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Início</a
+                >
+              </li>
+              <li>
+                <a
+                  href="movies.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Filmes</a
+                >
+              </li>
+              <li class="relative group">
+                <a
+                  href="series.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Séries</a
+                >
+              </li>
+              <li class="relative group">
+                <a
+                  href="documentaries.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Documentários</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Logo -->
+
+          <div
+            class="flex flex-row justify-center items-center w-full md:w-auto bg-[#3d3d3d85] rounded-full shadow-sm hover:shadow-lg transition-shadow duration-200 py-2 px-4"
+          >
+            <i
+              class="material-icons text-gray-200 cursor-pointer"
+              id="search-icon"
+            >
+              search
+            </i>
+            <input
+              type="text"
+              id="search-input"
+              class="bg-transparent pl-2 focus:outline-none text-gray-200 placeholder-gray-300"
+              placeholder="Buscar filme"
+            />
+          </div>
+        </div>
+
+        <script>
+          const searchInput = document.getElementById("search-input");
+
+          // Função debounce para evitar requisições excessivas
+          function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+              clearTimeout(timeout);
+              timeout = setTimeout(() => func(...args), delay);
+            };
+          }
+
+          // Função para buscar automaticamente enquanto o usuário digita
+          function handleSearch(event) {
+            const query = event.target.value.trim();
+            if (query) {
+              window.location.href = `search-results.html?query=${encodeURIComponent(
+                query
+              )}`;
+            }
+          }
+
+          // Adicionando o evento de escuta com debounce
+          searchInput.addEventListener("input", debounce(handleSearch, 500));
+        </script>
+      </nav>
+    </header>
+
+    <div id="details-container" class="px-6 md:px-12"></div>
+
+    <script>
+      const API_KEY = "72ab617ec874261c6e0d5fc80fbba973";
+      const BASE_URL = "https://api.themoviedb.org/3";
+      const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
+      const PROFILE_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185";
+
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      async function fetchCredits(id, type) {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/${type}/${id}/credits?api_key=${API_KEY}&language=pt-BR`
+          );
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Erro ao buscar créditos:", error);
+          return { cast: [], crew: [] };
+        }
+      }
+
+      async function fetchAdditionalDetails(id, type) {
+        try {
+          if (type === "movie") {
+            const response = await fetch(
+              `${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}&language=pt-BR`
+            );
+            const data = await response.json();
+            const releaseInfo = data.results.find(
+              (entry) => entry.iso_3166_1 === "BR"
+            );
+            return (
+              releaseInfo?.release_dates[0]?.certification || "Não disponível"
+            );
+          } else if (type === "tv") {
+            const response = await fetch(
+              `${BASE_URL}/tv/${id}/content_ratings?api_key=${API_KEY}&language=pt-BR`
+            );
+            const data = await response.json();
+            const ratingInfo = data.results.find(
+              (entry) => entry.iso_3166_1 === "BR"
+            );
+            return ratingInfo?.rating || "Não disponível";
+          }
+          return "Não disponível";
+        } catch (error) {
+          console.error("Erro ao buscar classificação indicativa:", error);
+          return "Não disponível";
+        }
+      }
+
+      async function fetchTrailer(id, type) {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`
+          );
+          const data = await response.json();
+          const trailer = data.results.find(
+            (video) => video.type === "Trailer" && video.site === "YouTube"
+          );
+          return trailer
+            ? `https://www.youtube.com/embed/${trailer.key}`
+            : null;
+        } catch (error) {
+          console.error("Erro ao buscar trailer:", error);
+          return null;
+        }
+      }
+
+      async function displayDetails(data, type) {
+        const container = document.getElementById("details-container");
+        const certification = await fetchAdditionalDetails(data.id, type);
+        const genres = data.genres.map((genre) => genre.name).join(", ");
+        const trailerUrl = await fetchTrailer(data.id, type);
+        const credits = await fetchCredits(data.id, type);
+
+        const cast = credits.cast
+          .slice(0, 10)
+          .map(
+            (actor) => `
+          <div class="flex flex-col items-center">
+            <img
+              class="w-20 h-20 rounded-full object-cover"
+              src="${PROFILE_IMAGE_BASE_URL}${actor.profile_path}"
+              alt="${actor.name}"
+              onerror="this.src='./assets/images/default-profile.png';"
+            />
+            <p class="text-sm mt-2 text-center">${actor.name}</p>
+            <p class="text-xs text-gray-400 text-center">(${actor.character})</p>
+          </div>`
+          )
+          .join("");
+
+        const director = credits.crew.find(
+          (crewMember) => crewMember.job === "Director"
+        );
+        const directorHTML = director
+          ? `
+          <div class="flex flex-col items-center">
+            <img
+              class="w-20 h-20 rounded-full object-cover"
+              src="${PROFILE_IMAGE_BASE_URL}${director.profile_path}"
+              alt="${director.name}"
+              onerror="this.src='./assets/images/default-profile.png';"
+            />
+            <p class="text-sm mt-2 text-center">${director.name}</p>
+            <p class="text-xs text-gray-400 text-center">(Diretor)</p>
+          </div>`
+          : `<p class="text-gray-400">Diretor não encontrado.</p>`;
+
+        container.innerHTML = `
+          <div class="flex flex-col gap-6 pb-8">
+            <a href="javascript:history.back()" class="flex flex-row items-center text-red-500 hover:text-red-700 text-2xl w-fit flex gap-2">
+              <i class="material-icons text-4xl">chevron_left</i>
+              <p class="text-xl font-medium">Voltar</p>
+            </a>
+            <div class="flex flex-col items-start md:flex-row gap-8">
+              <img
+                  class="w-[60%] md:w-[20%] rounded-xl"
+                  src="${IMAGE_BASE_URL}${data.poster_path}"
+                  alt="${data.title || data.name}"
+              />
+              <div class="flex flex-col gap-4 items-start justify-start">
+                <h1 class="text-3xl font-bold">${data.title || data.name}</h1>
+                <p class="text-gray-300">${data.overview}</p>
+                <p class="text-sm text-white font-medium">
+                  ${type === "movie" ? "Lançamento" : "Primeira exibição"}: 
+                  ${new Date(
+                    data.release_date || data.first_air_date
+                  ).toLocaleDateString()}
+                </p>
+                <p class="text-sm text-white font-medium">Avaliação: ${
+                  data.vote_average
+                }</p>
+                <p class="text-sm text-white font-medium">Categoria: ${genres}</p>
+                <p class="text-sm text-white font-medium">Classificação indicativa: ${certification}</p>
+              </div>
+            </div>
+            ${
+              trailerUrl
+                ? `<div class="mt-8 flex flex-col gap-4 items-start">
+                    <h2 class="text-2xl font-bold mb-4 w-full flex flex-row items-start">Assista ao trailer</h2>
+                    <iframe
+                      class="w-full md:w-1/2 aspect-video rounded-lg"
+                      src="${trailerUrl}"
+                      title="Trailer de ${data.title || data.name}"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>`
+                : `<p class="text-sm text-white font-medium mt-8">Trailer não disponível.</p>`
+            }
+            <div class="mt-8 ">
+              <h2 class="text-2xl font-bold mb-4">Diretor</h2>
+              ${directorHTML}
+            </div>
+
+            <div class="mt-8">
+              <h2 class="text-2xl font-bold mb-4">Elenco</h2>
+              <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                ${cast}
+              </div>
+            </div>
+          </div>`;
+      }
+
+      const id = getQueryParam("id");
+      const type = getQueryParam("type") || "movie"; // Default para "movie"
+      if (id) {
+        fetchDetails(id, type);
+      } else {
+        document.getElementById("details-container").innerHTML = `
+          <p>Item não encontrado!</p>`;
+      }
+
+      async function fetchDetails(id, type) {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/${type}/${id}?api_key=${API_KEY}&language=pt-BR`
+          );
+          const data = await response.json();
+          setBackground(data.backdrop_path);
+          displayDetails(data, type);
+        } catch (error) {
+          console.error("Erro ao buscar detalhes:", error);
+        }
+      }
+
+      function setBackground(backdropPath) {
+        if (backdropPath) {
+          document.body.style.backgroundImage = `url(${IMAGE_BASE_URL}${backdropPath})`;
+        }
+      }
+    </script>
+  </body>
+</html>

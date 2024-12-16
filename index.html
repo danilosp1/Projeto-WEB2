@@ -1,192 +1,496 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UFSCartaz</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <style>
+      ::-webkit-scrollbar {
+        width: 8px;
+        background-color: transparent;
+      }
 
-<body
-    class="bg-gray-100 flex flex-col min-h-screen bg-[url('./assets/images/bgimage.jpeg')] bg-no-repeat bg-cover backdrop-blur-xl backdrop-brightness-50">
+      ::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 4px;
+      }
 
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .custom-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+      }
+
+      /* Geral */
+      img {
+        transition: transform 0.3s ease;
+      }
+
+      .card {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .card:hover img {
+        transform: scale(1.1);
+      }
+
+      .card:hover .absolute {
+        opacity: 1;
+      }
+
+      #popular-content,
+      #recommended-content,
+      #documentaries,
+      #popular-series,
+      #popular-movies {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto; /* Permitir rolagem horizontal */
+        white-space: nowrap; /* Impedir quebra de linha */
+        width: calc(
+          100vw + 3rem
+        ); /* Expandir para ocupar toda a largura visível e compensar o padding */
+        padding-left: 3rem; /* Adicionar o padding à esquerda */
+        padding-right: 3vw; /* Adicionar o padding à direita */
+        margin-left: calc(-50vw + 50%); /* Centralizar o contêiner */
+        scroll-behavior: smooth; /* Suavizar o scroll */
+        position: relative; /* Controle posicional */
+      }
+
+      #popular-content::-webkit-scrollbar,
+      #recommended-content::-webkit-scrollbar,
+      #documentaries::-webkit-scrollbar,
+      #popular-series::-webkit-scrollbar,
+      #popular-movies::-webkit-scrollbar {
+        display: none; /* Ocultar barra de rolagem (opcional) */
+      }
+
+      .card {
+        flex-shrink: 0; /* Impedir que os itens encolham */
+        width: 200px; /* Definir a largura fixa dos itens */
+      }
+    </style>
+  </head>
+
+  <body
+    class="flex flex-col min-h-screen bg-[#141414] overflow-x-hidden overflow-y-auto"
+  >
     <!-- Cabeçalho -->
-    <header class="w-full flex flex-col md:flex-row items-center justify-between p-6 md:p-10 gap-4 md:gap-6">
-        <!-- Logo e Barra de Busca -->
-        <div class="flex flex-1 items-center justify-between w-full">
-            <a href="index.html"><img src="./assets/images/logo2nobg.png" class="w-24 md:w-28" alt="Logo"></a>
-            <div
-                class="flex items-center w-full bg-[#3d3d3d85] rounded-full shadow-sm hover:shadow-lg transition-shadow duration-200 py-2 px-4">
-                <i class="material-icons text-gray-200 mr-2">search</i>
-                <input type="text"
-                    class="w-full bg-transparent py-2 focus:outline-none text-gray-200 placeholder-gray-300"
-                    placeholder="Buscar filme">
-                    <a href="list.html" class="text-white rounded-full px-4 py-2 hover:bg-gray-800">></a>
-            </div>
+    <header
+      class="w-full flex flex-col md:flex-row items-center justify-between px-10 py-12 gap-4 text-white"
+    >
+      <!-- Navegação principal -->
+      <nav
+        class="flex flex-col md:flex-row items-center justify-between w-full"
+      >
+        <div class="flex flex-col md:flex-row items-center gap-6 md:justify-between w-full">
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <a href="index.html">
+              <img
+                src="./assets/images/logo.png"
+                class="w-28 md:w-32"
+                alt="Logo"
+              />
+            </a>
+
+            <!-- Links de navegação -->
+            <ul class="flex flex-row items-center gap-6">
+              <li>
+                <a
+                  href="index.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Início</a
+                >
+              </li>
+              <li>
+                <a
+                  href="movies.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Filmes</a
+                >
+              </li>
+              <li class="relative group">
+                <a
+                  href="series.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Séries</a
+                >
+              </li>
+              <li class="relative group">
+                <a
+                  href="documentaries.html"
+                  class="text-gray-300 hover:text-white transition-colors duration-200"
+                  >Documentários</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Logo -->
+
+          <div
+            class="flex flex-row justify-center items-center w-full md:w-auto bg-[#3d3d3d85] rounded-full shadow-sm hover:shadow-lg transition-shadow duration-200 py-2 px-4"
+          >
+            <i
+              class="material-icons text-gray-200 cursor-pointer"
+              id="search-icon"
+            >
+              search
+            </i>
+            <input
+              type="text"
+              id="search-input"
+              class="bg-transparent pl-2 focus:outline-none text-gray-200 placeholder-gray-300"
+              placeholder="Buscar filme"
+            />
+          </div>
         </div>
 
-        <!-- Navegação -->
-        <nav class="hidden lg:flex lg:flex-1 lg:justify-center gap-2">
-            <a class="text-white text-lg xl:text-2xl rounded-full bg-[#9f9f9f95] py-2 px-4" href="#">Filmes</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Séries</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Animações</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Mistério</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Terror</a>
-        </nav>
+        <script>
+          const searchInput = document.getElementById("search-input");
 
-        <!-- Sobre Nós -->
-        <div class="hidden lg:flex">
-            <a class="text-white xl:text-xl text-md rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 bg-[#8f8f8f95] py-3 px-4"
-                href="about.html">Sobre nós</a>
-        </div>
+          // Função debounce para evitar requisições excessivas
+          function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+              clearTimeout(timeout);
+              timeout = setTimeout(() => func(...args), delay);
+            };
+          }
 
-        <!-- Menu Mobile -->
-        <div class="flex lg:hidden">
-            <button id="menu-button" class="text-gray-200 focus:outline-none">
-                <i class="material-icons">menu</i>
-            </button>
-        </div>
+          // Função para buscar automaticamente enquanto o usuário digita
+          function handleSearch(event) {
+            const query = event.target.value.trim();
+            if (query) {
+              window.location.href = `search-results.html?query=${encodeURIComponent(
+                query
+              )}`;
+            }
+          }
+
+          // Adicionando o evento de escuta com debounce
+          searchInput.addEventListener("input", debounce(handleSearch, 500));
+        </script>
+      </nav>
     </header>
 
-    <!-- Menu Mobile -->
-    <nav id="mobile-menu" class="hidden lg:hidden flex flex-col gap-2 justify-center items-center p-4 bg-[#3d3d3d85]">
-        <a class="text-white text-lg rounded-full bg-[#9f9f9f95] py-2 px-4 w-full text-center" href="#">Filmes</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Séries</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Animações</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Mistério</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Terror</a>
-        <a class="text-white xl:text-xl text-md rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 bg-[#8f8f8f95] py-3 px-4 w-full text-center"
-            href="about.html">Sobre nós</a>
-    </nav>
-
     <!-- Conteúdo Principal -->
-    <main class="flex flex-col md:flex-col-reverse lg:flex-row items-start justify-between w-full p-6 md:p-12 gap-8">
+    <main
+      class="flex flex-col items-start justify-between w-full pt-2 pb-6 px-6 md:pb-12 md:px-12 gap-8"
+    >
+      <!-- Seção Populares -->
+      <section class="w-full">
+        <h2 class="text-white text-2xl mb-4">Populares</h2>
+        <div class="relative group">
+          <button
+            class="absolute left-4 top-1/2 z-10 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('popular-content', -1)"
+          >
+            <i class="material-icons">chevron_left</i>
+          </button>
+          <div
+            id="popular-content"
+            class="flex gap-4 overflow-x-auto custom-scroll snap-x snap-mandatory"
+          >
+            <!-- Filmes populares serão inseridos aqui dinamicamente -->
+          </div>
+          <button
+            class="absolute right-4 top-1/2 z-50 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('popular-content', 1)"
+          >
+            <i class="material-icons">chevron_right</i>
+          </button>
+        </div>
+      </section>
 
-        <!-- Sidebar Populares -->
-        <aside class="w-full lg:w-1/3 flex-shrink-0 flex flex-col gap-4 p-4 bg-[#9f9f9f95] rounded-3xl">
-            <h2 class="text-white text-2xl">Populares</h2>
-            <div class="flex flex-col gap-4">
-                <!-- Card de Filme -->
-                <div class="relative rounded-3xl overflow-hidden">
-                    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                    <img class="w-full h-auto" src="./assets/images/spiderManCover.jpg"
-                        alt="Spider-Man: Across the Spider-Verse">
-                    <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                        <h3 class="text-xl xl:text-3xl">Spider-Man: Across the Spider-Verse</h3>
-                        <a class="mt-2 inline-block px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                            href="./selection.html">Ver mais</a>
-                    </div>
-                </div>
-                <!-- Repetir para outros filmes -->
-                <div class="relative rounded-3xl overflow-hidden">
-                    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                    <img class="w-full h-auto" src="./assets/images/spiderManCover6.jpg"
-                        alt="Spider-Man: Across the Spider-Verse">
-                    <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                        <h3 class="text-xl xl:text-3xl">Spider-Man: Across the Spider-Verse</h3>
-                        <a class="mt-2 inline-block px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                            href="./selection.html">Ver mais</a>
-                    </div>
-                </div>
-                <div class="relative rounded-3xl overflow-hidden">
-                    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                    <img class="w-full h-auto" src="./assets/images/spiderManCover5.jpg"
-                        alt="Spider-Man: Across the Spider-Verse">
-                    <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                        <h3 class="text-xl xl:text-3xl">Spider-Man: Across the Spider-Verse</h3>
-                        <a class="mt-2 inline-block px-2 lg:px-4 py-1 lg:py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                            href="./selection.html">Ver mais</a>
-                    </div>
-                </div>
-            </div>
-        </aside>
+      <!-- Seção Recomendações -->
+      <section class="w-full group">
+        <h2 class="text-white text-2xl mb-4">Você pode gostar</h2>
+        <div class="relative">
+          <button
+            class="absolute left-4 top-1/2 z-10 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('recommended-content', -1)"
+          >
+            <i class="material-icons">chevron_left</i>
+          </button>
+          <div
+            id="recommended-content"
+            class="flex gap-4 overflow-x-auto custom-scroll snap-x snap-mandatory scroll-smooth"
+          >
+            <!-- Recomendações serão inseridas aqui dinamicamente -->
+          </div>
+          <button
+            class="absolute right-4 top-1/2 z-10 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('recommended-content', 1)"
+          >
+            <i class="material-icons">chevron_right</i>
+          </button>
+        </div>
+      </section>
 
-        <!-- Seção Principal -->
-        <section class="w-full lg:w-2/3 flex flex-col justify-between items-center gap-8">
+      <!-- Seção Filmes -->
+      <section class="w-full">
+        <h2 class="text-white text-2xl mb-4">Filmes Populares</h2>
+        <div class="relative group">
+          <button
+            class="absolute left-4 top-1/2 z-10 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('popular-series', -1)"
+          >
+            <i class="material-icons">chevron_left</i>
+          </button>
+          <div
+            id="popular-movies"
+            class="flex gap-4 overflow-x-auto custom-scroll snap-x snap-mandatory"
+          >
+            <!-- FIlmes populares serão inseridas aqui dinamicamente -->
+          </div>
+          <button
+            class="absolute right-4 top-1/2 z-50 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('popular-series', 1)"
+          >
+            <i class="material-icons">chevron_right</i>
+          </button>
+        </div>
+      </section>
 
-            <!-- Filme em Destaque -->
-            <div class="hidden md:flex relative w-full rounded-3xl overflow-hidden">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto" src="./assets/images/spiderManCover.jpg"
-                    alt="Spider-Man: Across the Spider-Verse">
-                <div
-                    class="absolute top-0 left-0 p-6 md:p-10 text-white w-full h-full flex flex-col justify-between z-10">
+      <!-- Seção Séries -->
+      <section class="w-full">
+        <h2 class="text-white text-2xl mb-4">Séries Populares</h2>
+        <div class="relative group">
+          <button
+            class="absolute left-4 top-1/2 z-10 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('popular-series', -1)"
+          >
+            <i class="material-icons">chevron_left</i>
+          </button>
+          <div
+            id="popular-series"
+            class="flex gap-4 overflow-x-auto custom-scroll snap-x snap-mandatory"
+          >
+            <!-- Séries populares serão inseridas aqui dinamicamente -->
+          </div>
+          <button
+            class="absolute right-4 top-1/2 z-50 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('popular-series', 1)"
+          >
+            <i class="material-icons">chevron_right</i>
+          </button>
+        </div>
+      </section>
 
-                    <div class="flex flex-row xl:flex-col items-center xl:items-start gap-2">
-                        <span class="inline-block px-4 py-2 bg-[#5f5f5f95] rounded-full text-sm md:text-base">Em
-                            alta</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-4 py-2 bg-[#5f5f5f95] rounded-full text-sm md:text-base">Animação</span>
-                            <span class="px-4 py-2 bg-[#5f5f5f95] rounded-full text-sm md:text-base">Aventura</span>
-                        </div>
-                    </div>
-
-                    <div class="mb-6 mt-4 2xl:mt-0">
-                        <h2 class="text-2xl 2xl:text-5xl font-bold">Spider-Man: Across the Spider-Verse</h2>
-                        <p class="mt-4">Homem aranha se encontra em problemas e precisa salvar o dia mais uma vez, porém
-                            desta vez em diferentes universos.</p>
-                        <a class="mt-4 inline-block px-4 2xl:px-8 py-2 2xl:py-4 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-xl"
-                            href="./selection.html">Ver mais</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recomendações -->
-            <div class="w-full rounded-3xl bg-[#9f9f9f95] p-6 md:p-8">
-                <h2 class="text-white text-3xl mb-4">Você pode gostar</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Cartão de Recomendações -->
-                    <div class="relative rounded-3xl overflow-hidden">
-                        <a href="./selection.html" class="absolute inset-0 bg-black bg-opacity-60"></a>
-                        <img class="w-full h-auto" src="./assets/images/spiderManCover5.jpg"
-                            alt="Spider-Man: Across the Spider-Verse">
-                        <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                            <a href="selection.html" class="text-xl 2xl:text-3xl">Spider-Man: Across the Spider-Verse</a>
-                        </div>
-                    </div>
-                    <div class="relative rounded-3xl overflow-hidden">
-                        <a href="./selection.html" class="absolute inset-0 bg-black bg-opacity-60"></a>
-                        <img class="w-full h-auto" src="./assets/images/spiderManCover3.jpg"
-                            alt="Spider-Man: Across the Spider-Verse">
-                        <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                            <a href="./selection.html" class="text-xl 2xl:text-3xl">Spider-Man: Across the Spider-Verse</a>
-                        </div>
-                    </div>
-                    <div class="relative rounded-3xl overflow-hidden">
-                        <a href="./selection.html" class="absolute inset-0 bg-black bg-opacity-60"></a>
-                        <img class="w-full h-auto" src="./assets/images/spiderManCover2.jpg"
-                            alt="Spider-Man: Across the Spider-Verse">
-                        <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                            <a href="./selection.html" class="text-xl 2xl:text-3xl">Spider-Man: Across the Spider-Verse</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
+      <!-- Seção Documentários -->
+      <section class="w-full">
+        <h2 class="text-white text-2xl mb-4">Documentários</h2>
+        <div class="relative group">
+          <button
+            class="absolute left-4 top-1/2 z-10 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('documentaries', -1)"
+          >
+            <i class="material-icons">chevron_left</i>
+          </button>
+          <div
+            id="documentaries"
+            class="flex gap-4 overflow-x-auto custom-scroll snap-x snap-mandatory"
+          >
+            <!-- Documentários serão inseridos aqui dinamicamente -->
+          </div>
+          <button
+            class="absolute right-4 top-1/2 z-50 bg-black bg-opacity-50 text-white p-2 w-10 h-10 rounded-full group-hover:bg-opacity-75"
+            onclick="scrollCarousel('documentaries', 1)"
+          >
+            <i class="material-icons">chevron_right</i>
+          </button>
+        </div>
+      </section>
     </main>
 
-    <!-- Script para Menu Mobile -->
+    <!-- Script para buscar dados da API -->
     <script>
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+      const API_KEY = "72ab617ec874261c6e0d5fc80fbba973";
+      const BASE_URL = "https://api.themoviedb.org/3";
+      const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+      // Função para buscar filmes populares
+      async function fetchPopularContent() {
+        try {
+          // Fazendo as requisições para filmes e séries em paralelo
+          const [moviesResponse, tvShowsResponse] = await Promise.all([
+            fetch(
+              `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR`
+            ),
+            fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}&language=pt-BR`),
+          ]);
+
+          const moviesData = await moviesResponse.json();
+          const tvShowsData = await tvShowsResponse.json();
+
+          // Combinando os resultados
+          const combinedResults = [
+            ...moviesData.results,
+            ...tvShowsData.results,
+          ];
+
+          // Ordenando por popularidade (com base no campo "popularity")
+          combinedResults.sort((a, b) => b.popularity - a.popularity);
+
+          // Exibindo no mesmo carrossel
+          displayContent("popular-content", combinedResults);
+        } catch (error) {
+          console.error("Erro ao buscar conteúdo popular:", error);
+        }
+      }
+
+      // Função para buscar recomendações
+      async function fetchRecommendedContent() {
+        try {
+          // Fazendo as requisições para filmes e séries recomendados em paralelo
+          const [moviesResponse, tvShowsResponse] = await Promise.all([
+            fetch(
+              `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=pt-BR`
+            ),
+            fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=pt-BR`),
+          ]);
+
+          const moviesData = await moviesResponse.json();
+          const tvShowsData = await tvShowsResponse.json();
+
+          // Combinando os resultados
+          const combinedResults = [
+            ...moviesData.results,
+            ...tvShowsData.results,
+          ];
+
+          // Ordenando por popularidade ou outro critério (aqui usamos "vote_average" como exemplo)
+          combinedResults.sort((a, b) => b.vote_average - a.vote_average);
+
+          // Exibindo no carrossel
+          displayContent("recommended-content", combinedResults);
+        } catch (error) {
+          console.error("Erro ao buscar conteúdo recomendado:", error);
+        }
+      }
+
+      async function fetchPopularMovies() {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR`
+          );
+          const data = await response.json();
+          displayContent("popular-movies", data.results);
+        } catch (error) {
+          console.error("Erro ao buscar filmes populares:", error);
+        }
+      }
+
+      // Buscar séries populares
+      async function fetchPopularSeries() {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=pt-BR`
+          );
+          const data = await response.json();
+          displayContent("popular-series", data.results);
+        } catch (error) {
+          console.error("Erro ao buscar séries populares:", error);
+        }
+      }
+
+      // Buscar documentários
+      async function fetchDocumentaries() {
+        try {
+          const response = await fetch(
+            `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=99`
+          );
+          const data = await response.json();
+          displayContent("documentaries", data.results);
+        } catch (error) {
+          console.error("Erro ao buscar documentários:", error);
+        }
+      }
+
+      // Buscar por categoria
+      async function fetchByCategory(categoryName) {
+        try {
+          const genresResponse = await fetch(
+            `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=pt-BR`
+          );
+          const genresData = await genresResponse.json();
+          const genre = genresData.genres.find(
+            (g) => g.name.toLowerCase() === categoryName.toLowerCase()
+          );
+
+          if (!genre) {
+            console.error(`Gênero não encontrado: ${categoryName}`);
+            return;
+          }
+
+          const response = await fetch(
+            `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${genre.id}`
+          );
+          const data = await response.json();
+          displayContent("popular-content", data.results); // Reutiliza o container de filmes populares
+        } catch (error) {
+          console.error("Erro ao buscar por categoria:", error);
+        }
+      }
+
+      function displayContent(containerId, contents) {
+        const container = document.getElementById(containerId);
+        contents.forEach((content) => {
+          // Verifica se é um filme ou uma série
+          const type = content.media_type || (content.title ? "movie" : "tv");
+
+          const contentCard = `
+      <div
+        class="card relative snap-center w-60 flex-shrink-0 rounded-3xl overflow-hidden transform transition-transform duration-300"
+      >
+        <img
+          class="w-full aspect-[9/13]"
+          src="${IMAGE_BASE_URL}${content.poster_path}"
+          alt="${content.title || content.name}"
+        />
+        <div
+          class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-300"
+        >
+          <a
+            href="details.html?id=${content.id}&type=${type}"
+            class="text-white bg-red-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition-colors"
+          >
+            Saiba Mais
+          </a>
+        </div>
+      </div>
+    `;
+          container.innerHTML += contentCard;
         });
+      }
+
+      // Função para navegar no carrossel
+      // Função para navegar no carrossel
+      function scrollCarousel(containerId, direction) {
+        const container = document.getElementById(containerId);
+        const scrollAmount = container.querySelector(".w-60").offsetWidth + 16; // Tamanho do item + gap
+        container.scrollBy({
+          left: scrollAmount * direction,
+          behavior: "smooth",
+        });
+      }
+
+      // Inicializar busca de dados
+      // Inicializar
+      fetchPopularContent();
+      fetchRecommendedContent();
+      fetchPopularMovies();
+      fetchPopularSeries();
+      fetchDocumentaries();
     </script>
-
-</body>
-
+  </body>
 </html>
