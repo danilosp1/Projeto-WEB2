@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Séries - UFSCartaz</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -52,27 +53,25 @@
         display: flex;
         gap: 1rem;
         overflow-x: auto;
-        white-space: nowrap; 
-        width: calc(
-          100vw + 3rem
-        ); 
-        padding-left: 3rem; 
-        padding-right: 3vw; 
-        margin-left: calc(-50vw + 50%); 
+        white-space: nowrap;
+        width: calc(100vw + 3rem);
+        padding-left: 3rem;
+        padding-right: 3vw;
+        margin-left: calc(-50vw + 50%);
         scroll-behavior: smooth;
-        position: relative; 
+        position: relative;
       }
 
       #comedy-series::-webkit-scrollbar,
       #horror-series::-webkit-scrollbar,
       #drama-series::-webkit-scrollbar,
       #action-series::-webkit-scrollbar {
-        display: none; 
+        display: none;
       }
 
       .card {
         flex-shrink: 0;
-        width: 200px; 
+        width: 200px;
       }
     </style>
   </head>
