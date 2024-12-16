@@ -106,7 +106,6 @@
         <script>
           const searchInput = document.getElementById("search-input");
 
-          // Função debounce para evitar requisições excessivas
           function debounce(func, delay) {
             let timeout;
             return function (...args) {
@@ -115,7 +114,6 @@
             };
           }
 
-          // Função para buscar automaticamente enquanto o usuário digita
           function handleSearch(event) {
             const query = event.target.value.trim();
             if (query) {
@@ -125,7 +123,6 @@
             }
           }
 
-          // Adicionando o evento de escuta com debounce
           searchInput.addEventListener("input", debounce(handleSearch, 500));
         </script>
       </nav>
@@ -304,7 +301,7 @@
       }
 
       const id = getQueryParam("id");
-      const type = getQueryParam("type") || "movie"; // Default para "movie"
+      const type = getQueryParam("type") || "movie"; 
       if (id) {
         fetchDetails(id, type);
       } else {

@@ -318,10 +318,8 @@
       const BASE_URL = "https://api.themoviedb.org/3";
       const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
-      // Função para buscar filmes populares
       async function fetchPopularContent() {
         try {
-          // Fazendo as requisições para filmes e séries em paralelo
           const [moviesResponse, tvShowsResponse] = await Promise.all([
             fetch(
               `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR`
@@ -332,26 +330,22 @@
           const moviesData = await moviesResponse.json();
           const tvShowsData = await tvShowsResponse.json();
 
-          // Combinando os resultados
           const combinedResults = [
             ...moviesData.results,
             ...tvShowsData.results,
           ];
 
-          // Ordenando por popularidade (com base no campo "popularity")
           combinedResults.sort((a, b) => b.popularity - a.popularity);
 
-          // Exibindo no mesmo carrossel
           displayContent("popular-content", combinedResults);
         } catch (error) {
           console.error("Erro ao buscar conteúdo popular:", error);
         }
       }
 
-      // Função para buscar recomendações
       async function fetchRecommendedContent() {
         try {
-          // Fazendo as requisições para filmes e séries recomendados em paralelo
+        
           const [moviesResponse, tvShowsResponse] = await Promise.all([
             fetch(
               `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=pt-BR`
@@ -362,16 +356,13 @@
           const moviesData = await moviesResponse.json();
           const tvShowsData = await tvShowsResponse.json();
 
-          // Combinando os resultados
           const combinedResults = [
             ...moviesData.results,
             ...tvShowsData.results,
           ];
 
-          // Ordenando por popularidade ou outro critério (aqui usamos "vote_average" como exemplo)
           combinedResults.sort((a, b) => b.vote_average - a.vote_average);
 
-          // Exibindo no carrossel
           displayContent("recommended-content", combinedResults);
         } catch (error) {
           console.error("Erro ao buscar conteúdo recomendado:", error);
@@ -390,7 +381,6 @@
         }
       }
 
-      // Buscar séries populares
       async function fetchPopularSeries() {
         try {
           const response = await fetch(
@@ -403,7 +393,6 @@
         }
       }
 
-      // Buscar documentários
       async function fetchDocumentaries() {
         try {
           const response = await fetch(
@@ -416,7 +405,6 @@
         }
       }
 
-      // Buscar por categoria
       async function fetchByCategory(categoryName) {
         try {
           const genresResponse = await fetch(
@@ -436,7 +424,7 @@
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${genre.id}`
           );
           const data = await response.json();
-          displayContent("popular-content", data.results); // Reutiliza o container de filmes populares
+          displayContent("popular-content", data.results); 
         } catch (error) {
           console.error("Erro ao buscar por categoria:", error);
         }
@@ -445,7 +433,6 @@
       function displayContent(containerId, contents) {
         const container = document.getElementById(containerId);
         contents.forEach((content) => {
-          // Verifica se é um filme ou uma série
           const type = content.media_type || (content.title ? "movie" : "tv");
 
           const contentCard = `
@@ -473,19 +460,15 @@
         });
       }
 
-      // Função para navegar no carrossel
-      // Função para navegar no carrossel
       function scrollCarousel(containerId, direction) {
         const container = document.getElementById(containerId);
-        const scrollAmount = container.querySelector(".w-60").offsetWidth + 16; // Tamanho do item + gap
+        const scrollAmount = container.querySelector(".w-60").offsetWidth + 16;
         container.scrollBy({
           left: scrollAmount * direction,
           behavior: "smooth",
         });
       }
 
-      // Inicializar busca de dados
-      // Inicializar
       fetchPopularContent();
       fetchRecommendedContent();
       fetchPopularMovies();

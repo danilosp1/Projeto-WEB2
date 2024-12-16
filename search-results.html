@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resultados da Busca</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -126,7 +125,6 @@
         <script>
           const searchInput = document.getElementById("search-input");
 
-          // Função debounce para evitar requisições excessivas
           function debounce(func, delay) {
             let timeout;
             return function (...args) {
@@ -135,7 +133,6 @@
             };
           }
 
-          // Função para buscar automaticamente enquanto o usuário digita
           function handleSearch(event) {
             const query = event.target.value.trim();
             if (query) {
@@ -145,7 +142,6 @@
             }
           }
 
-          // Adicionando o evento de escuta com debounce
           searchInput.addEventListener("input", debounce(handleSearch, 500));
         </script>
       </nav>
@@ -193,7 +189,7 @@
 
       function displayResults(results) {
         const container = document.getElementById("results-container");
-        container.innerHTML = ""; // Limpa os resultados anteriores
+        container.innerHTML = ""; 
 
         if (!results || results.length === 0) {
           container.innerHTML =
@@ -206,7 +202,7 @@
           const title = type === "movie" ? content.title : content.name;
           const image = content.poster_path
             ? `${IMAGE_BASE_URL}${content.poster_path}`
-            : "./assets/images/placeholder.png"; // Imagem padrão caso não exista
+            : "./assets/images/placeholder.png"; 
           const link = `details.html?id=${content.id}&type=${type}`;
           const typeLabel = type === "movie" ? "Filme" : "Série";
 

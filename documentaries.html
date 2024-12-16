@@ -10,7 +10,6 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <style>
-      /* Estilizações mantidas iguais */
       ::-webkit-scrollbar {
         width: 8px;
         background-color: transparent;
@@ -147,7 +146,6 @@
         <script>
           const searchInput = document.getElementById("search-input");
 
-          // Função debounce para evitar requisições excessivas
           function debounce(func, delay) {
             let timeout;
             return function (...args) {
@@ -156,7 +154,6 @@
             };
           }
 
-          // Função para buscar automaticamente enquanto o usuário digita
           function handleSearch(event) {
             const query = event.target.value.trim();
             if (query) {
@@ -166,7 +163,6 @@
             }
           }
 
-          // Adicionando o evento de escuta com debounce
           searchInput.addEventListener("input", debounce(handleSearch, 500));
         </script>
       </nav>
@@ -205,7 +201,7 @@
         try {
           const response = await fetch(
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=99`
-          ); // Gênero 99 é o ID para documentários
+          ); 
           const data = await response.json();
           displayContent("documentaries", data.results);
         } catch (error) {
