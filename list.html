@@ -1,315 +1,608 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resultados da Pesquisa</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
 
-<body
-    class="bg-gray-100 flex flex-col min-h-screen bg-[url('./assets/images/bgimage.jpeg')] bg-no-repeat bg-cover backdrop-blur-xl backdrop-brightness-50">
-    
+  <body
+    class="bg-gray-100 flex flex-col min-h-screen bg-[url('./assets/images/bgimage.jpeg')] bg-no-repeat bg-cover backdrop-blur-xl backdrop-brightness-50"
+  >
     <!-- Cabeçalho -->
-    <header class="w-full flex flex-col md:flex-row items-center justify-between p-6 md:p-10 gap-4 md:gap-6">
-        <!-- Logo e Barra de Busca -->
-        <div class="flex flex-1 items-center justify-between w-full">
-            <a href="index.html"><img src="./assets/images/logo2nobg.png" class="w-24 md:w-28" alt="Logo"></a>
-            <div
-                class="flex items-center w-full bg-[#3d3d3d85] rounded-full shadow-sm hover:shadow-lg transition-shadow duration-200 py-2 px-4">
-                <i class="material-icons text-gray-200 mr-2">search</i>
-                <input type="text"
-                    class="w-full bg-transparent py-2 focus:outline-none text-gray-200 placeholder-gray-300"
-                    placeholder="Buscar filme">
-                    <a href="list.html" class="text-white rounded-full px-4 py-2 hover:bg-gray-800">></a>
-            </div>
+    <header
+      class="w-full flex flex-col md:flex-row items-center justify-between p-6 md:p-10 gap-4 md:gap-6"
+    >
+      <!-- Logo e Barra de Busca -->
+      <div class="flex flex-1 items-center justify-between w-full">
+        <a href="index.html"
+          ><img
+            src="./assets/images/logo2nobg.png"
+            class="w-24 md:w-28"
+            alt="Logo"
+        /></a>
+        <div
+          class="flex items-center w-full bg-[#3d3d3d85] rounded-full shadow-sm hover:shadow-lg transition-shadow duration-200 py-2 px-4"
+        >
+          <i class="material-icons text-gray-200 mr-2">search</i>
+          <input
+            type="text"
+            class="w-full bg-transparent py-2 focus:outline-none text-gray-200 placeholder-gray-300"
+            placeholder="Buscar"
+          />
+          <a
+            href="list.html"
+            class="text-white rounded-full px-4 py-2 hover:bg-gray-800"
+            >></a
+          >
         </div>
-        
-        <!-- Navegação -->
-        <nav class="hidden lg:flex lg:flex-1 lg:justify-center gap-2">
-            <a class="text-white text-lg xl:text-2xl rounded-full bg-[#9f9f9f95] py-2 px-4" href="index.html">Filmes</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Séries</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Animações</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Mistério</a>
-            <a class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
-                href="#">Terror</a>
-        </nav>
-        
-        <!-- Sobre Nós -->
-        <div class="hidden lg:flex">
-            <a class="text-white xl:text-xl text-md rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 bg-[#8f8f8f95] py-3 px-4"
-                href="about.html">Sobre nós</a>
-        </div>
-        
-        <!-- Menu Mobile -->
-        <div class="flex lg:hidden">
-            <button id="menu-button" class="text-gray-200 focus:outline-none">
-                <i class="material-icons">menu</i>
-            </button>
-        </div>
+      </div>
+
+      <!-- Navegação -->
+      <nav class="hidden lg:flex lg:flex-1 lg:justify-center gap-2">
+        <a
+          class="text-white text-lg xl:text-2xl rounded-full bg-[#9f9f9f95] py-2 px-4"
+          href="index.html"
+          >Filmes</a
+        >
+        <a
+          class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
+          href="#"
+          >Séries</a
+        >
+        <a
+          class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
+          href="#"
+          >Animações</a
+        >
+        <a
+          class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
+          href="#"
+          >Mistério</a
+        >
+        <a
+          class="text-gray-200 text-lg xl:text-2xl rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4"
+          href="#"
+          >Terror</a
+        >
+      </nav>
+
+      <!-- Sobre Nós -->
+      <div class="hidden lg:flex">
+        <a
+          class="text-white xl:text-xl text-md rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 bg-[#8f8f8f95] py-3 px-4"
+          href="about.html"
+          >Sobre nós</a
+        >
+      </div>
+
+      <!-- Menu Mobile -->
+      <div class="flex lg:hidden">
+        <button id="menu-button" class="text-gray-200 focus:outline-none">
+          <i class="material-icons">menu</i>
+        </button>
+      </div>
     </header>
 
     <!-- Menu Mobile -->
-    <nav id="mobile-menu" class="hidden lg:hidden flex flex-col gap-2 justify-center items-center p-4 bg-[#3d3d3d85]">
-        <a class="text-white text-lg rounded-full bg-[#9f9f9f95] py-2 px-4 w-full text-center" href="index.html">Filmes</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Séries</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Animações</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Mistério</a>
-        <a class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
-            href="#">Terror</a>
-        <a class="text-white xl:text-xl text-md rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 bg-[#8f8f8f95] py-3 px-4 w-full text-center"
-            href="about.html">Sobre nós</a>
+    <nav
+      id="mobile-menu"
+      class="hidden lg:hidden flex flex-col gap-2 justify-center items-center p-4 bg-[#3d3d3d85]"
+    >
+      <a
+        class="text-white text-lg rounded-full bg-[#9f9f9f95] py-2 px-4 w-full text-center"
+        href="index.html"
+        >Filmes</a
+      >
+      <a
+        class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
+        href="#"
+        >Séries</a
+      >
+      <a
+        class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
+        href="#"
+        >Animações</a
+      >
+      <a
+        class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
+        href="#"
+        >Mistério</a
+      >
+      <a
+        class="text-gray-200 text-lg rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 py-2 px-4 w-full text-center"
+        href="#"
+        >Terror</a
+      >
+      <a
+        class="text-white xl:text-xl text-md rounded-full hover:bg-[#5f5f5f95] transition-colors duration-200 bg-[#8f8f8f95] py-3 px-4 w-full text-center"
+        href="about.html"
+        >Sobre nós</a
+      >
     </nav>
 
     <!-- Conteúdo Principal -->
-    <main class="flex flex-col items-center justify-start w-full p-6 md:p-12 gap-8">
-        
-        <!-- Título da Pesquisa -->
-        <section class="w-full max-w-6xl text-center text-gray-200">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">Resultados da Pesquisa para: <span class="text-white">"Spider-Man"</span></h1>
-            <!-- <p class="text-lg">Nenhum resultado encontrado para sua pesquisa.</p> -->
-        </section>
-        
-        <!-- Grid de Resultados -->
-        <section class="w-full max-w-8xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Across the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover6.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover5.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Homecoming">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover3.jpg" alt="The Amazing Spider-Man">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Into the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Into the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Across the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover6.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover5.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Homecoming">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover3.jpg" alt="The Amazing Spider-Man">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Into the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Into the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Across the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover6.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover5.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Homecoming">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover3.jpg" alt="The Amazing Spider-Man">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Into the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Into the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Across the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover6.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover5.jpg" alt="Spider-Man: Across the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Homecoming">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover3.jpg" alt="The Amazing Spider-Man">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-            <div class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200">
-                <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-                <img class="w-full h-auto rounded-3xl" src="./assets/images/spiderManCover2.jpg" alt="Spider-Man: Into the Spider-Verse">
-                <div class="absolute bottom-0 left-0 p-4 text-white z-10">
-                    <h3 class="text-xl xl:text-2xl">Spider-Man: Into the Spider-Verse</h3>
-                    <a class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
-                        href="selection.html">Ver mais</a>
-                </div>
-            </div>
-        </section>
+    <main
+      class="flex flex-col items-center justify-start w-full p-6 md:p-12 gap-8"
+    >
+      <!-- Título da Pesquisa -->
+      <section class="w-full max-w-6xl text-center text-gray-200">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4">
+          Resultados da Pesquisa para:
+          <span class="text-white">"Spider-Man"</span>
+        </h1>
+        <!-- <p class="text-lg">Nenhum resultado encontrado para sua pesquisa.</p> -->
+      </section>
+
+      <!-- Grid de Resultados -->
+      <section
+        class="w-full max-w-8xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6"
+      >
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Across the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover6.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover5.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Homecoming"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover3.jpg"
+            alt="The Amazing Spider-Man"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Into the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Into the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Across the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover6.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover5.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Homecoming"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover3.jpg"
+            alt="The Amazing Spider-Man"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Into the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Into the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Across the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover6.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover5.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Homecoming"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover3.jpg"
+            alt="The Amazing Spider-Man"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Into the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Into the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Across the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover6.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: No Way Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover5.jpg"
+            alt="Spider-Man: Across the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Far From Home</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Homecoming"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">Spider-Man: Homecoming</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover3.jpg"
+            alt="The Amazing Spider-Man"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">The Amazing Spider-Man</h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+        <div
+          class="relative bg-[#9f9f9f95] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-200"
+        >
+          <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+          <img
+            class="w-full h-auto rounded-3xl"
+            src="./assets/images/spiderManCover2.jpg"
+            alt="Spider-Man: Into the Spider-Verse"
+          />
+          <div class="absolute bottom-0 left-0 p-4 text-white z-10">
+            <h3 class="text-xl xl:text-2xl">
+              Spider-Man: Into the Spider-Verse
+            </h3>
+            <a
+              class="mt-2 inline-block px-4 py-2 rounded-full bg-white hover:bg-gray-300 transition-colors duration-200 text-black text-lg"
+              href="selection.html"
+              >Ver mais</a
+            >
+          </div>
+        </div>
+      </section>
     </main>
-    
+
     <!-- Script para Menu Mobile -->
     <script>
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+      const menuButton = document.getElementById("menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      menuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
     </script>
-    
-</body>
-
+  </body>
 </html>

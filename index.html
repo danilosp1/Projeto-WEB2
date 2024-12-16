@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UFSCartaz</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -92,7 +92,9 @@
       <nav
         class="flex flex-col md:flex-row items-center justify-between w-full"
       >
-        <div class="flex flex-col md:flex-row items-center gap-6 md:justify-between w-full">
+        <div
+          class="flex flex-col md:flex-row items-center gap-6 md:justify-between w-full"
+        >
           <div class="flex flex-col md:flex-row items-center gap-6">
             <a href="index.html">
               <img
@@ -149,7 +151,7 @@
               type="text"
               id="search-input"
               class="bg-transparent pl-2 focus:outline-none text-gray-200 placeholder-gray-300"
-              placeholder="Buscar filme"
+              placeholder="Buscar"
             />
           </div>
         </div>
@@ -345,7 +347,6 @@
 
       async function fetchRecommendedContent() {
         try {
-        
           const [moviesResponse, tvShowsResponse] = await Promise.all([
             fetch(
               `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=pt-BR`
@@ -377,7 +378,7 @@
           const data = await response.json();
           displayContent("popular-movies", data.results);
         } catch (error) {
-          console.error("Erro ao buscar filmes populares:", error);
+          console.error("Erro ao Buscars populares:", error);
         }
       }
 
@@ -424,7 +425,7 @@
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${genre.id}`
           );
           const data = await response.json();
-          displayContent("popular-content", data.results); 
+          displayContent("popular-content", data.results);
         } catch (error) {
           console.error("Erro ao buscar por categoria:", error);
         }

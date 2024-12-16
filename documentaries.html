@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Documentários - UFSCartaz</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -139,7 +139,7 @@
               type="text"
               id="search-input"
               class="bg-transparent pl-2 focus:outline-none text-gray-200 placeholder-gray-300"
-              placeholder="Buscar filme"
+              placeholder="Buscar"
             />
           </div>
         </div>
@@ -202,7 +202,7 @@
         try {
           const response = await fetch(
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=99`
-          ); 
+          );
           const data = await response.json();
           displayContent("documentaries", data.results);
         } catch (error) {

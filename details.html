@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalhes</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -99,7 +99,7 @@
               type="text"
               id="search-input"
               class="bg-transparent pl-2 focus:outline-none text-gray-200 placeholder-gray-300"
-              placeholder="Buscar filme"
+              placeholder="Buscar"
             />
           </div>
         </div>
@@ -302,7 +302,7 @@
       }
 
       const id = getQueryParam("id");
-      const type = getQueryParam("type") || "movie"; 
+      const type = getQueryParam("type") || "movie";
       if (id) {
         fetchDetails(id, type);
       } else {

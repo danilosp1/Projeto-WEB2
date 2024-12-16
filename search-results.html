@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resultados da Busca</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -118,7 +118,7 @@
               type="text"
               id="search-input"
               class="bg-transparent pl-2 focus:outline-none text-gray-200 placeholder-gray-300"
-              placeholder="Buscar filme"
+              placeholder="Buscar"
             />
           </div>
         </div>
@@ -190,7 +190,7 @@
 
       function displayResults(results) {
         const container = document.getElementById("results-container");
-        container.innerHTML = ""; 
+        container.innerHTML = "";
 
         if (!results || results.length === 0) {
           container.innerHTML =
@@ -203,7 +203,7 @@
           const title = type === "movie" ? content.title : content.name;
           const image = content.poster_path
             ? `${IMAGE_BASE_URL}${content.poster_path}`
-            : "./assets/images/placeholder.png"; 
+            : "./assets/images/placeholder.png";
           const link = `details.html?id=${content.id}&type=${type}`;
           const typeLabel = type === "movie" ? "Filme" : "Série";
 
