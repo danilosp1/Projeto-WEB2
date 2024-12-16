@@ -175,12 +175,17 @@
       async function fetchSearchResults(query) {
         try {
           const response = await fetch(
-            `${BASE_URL}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${encodeURIComponent(
+            `${BASE_URL}/search/multi?api_key=${API_KEY}&language=pt-BR&query=${encodeURIComponent(
               query
             )}`
           );
           const data = await response.json();
-          displayResults(data.results);
+          displayResults(
+            data.results.filter(
+              (content) =>
+                content.media_type === "movie" || content.media_type === "tv"
+            )
+          );
         } catch (error) {
           console.error("Erro ao buscar resultados:", error);
         }
@@ -190,39 +195,46 @@
         const container = document.getElementById("results-container");
         container.innerHTML = ""; // Limpa os resultados anteriores
 
-        if (results.length === 0) {
+        if (!results || results.length === 0) {
           container.innerHTML =
             "<p class='col-span-full text-center font-medium text-xl text-white'>Nenhum resultado encontrado</p>";
           return;
         }
 
-        results.forEach((movie) => {
+        results.forEach((content) => {
+          const type = content.media_type;
+          const title = type === "movie" ? content.title : content.name;
+          const image = content.poster_path
+            ? `${IMAGE_BASE_URL}${content.poster_path}`
+            : "./assets/images/placeholder.png"; // Imagem padrão caso não exista
+          const link = `details.html?id=${content.id}&type=${type}`;
+          const typeLabel = type === "movie" ? "Filme" : "Série";
+
           const card = `
             <div
-        class="card relative snap-center w-50 flex-shrink-0 rounded-3xl overflow-hidden transform transition-transform duration-300"
-      >
-        <img
-          class="w-auto h-auto"
-          src="${IMAGE_BASE_URL}${movie.poster_path}"
-          alt="${movie.title}"
-        />
-        <div
-          class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-300"
-        >
-          <a
-            href="details.html?id=${movie.id}"
-            class="text-white bg-red-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition-colors"
-          >
-            Saiba Mais
-          </a>
-        </div>
-      </div>
+              class="card relative snap-center w-50 flex-shrink-0 rounded-3xl overflow-hidden transform transition-transform duration-300"
+            >
+              <img
+                class="w-auto h-auto"
+                src="${image}"
+                alt="${title}"
+              />
+              <div
+                class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-300"
+              >
+                <a
+                  href="${link}"
+                  class="text-white bg-red-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-red-700 transition-colors"
+                >
+                  Saiba mais
+                </a>
+              </div>
+            </div>
           `;
           container.innerHTML += card;
         });
       }
 
-      // Capturar o parâmetro "query" da URL
       document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
         const query = urlParams.get("query");
@@ -239,7 +251,6 @@
           if (searchInput) searchInput.value = query;
         }
 
-        // Adiciona funcionalidade ao botão de busca
         const searchInput = document.getElementById("search-input");
         const searchButton = document.getElementById("search-button");
 
